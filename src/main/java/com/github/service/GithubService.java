@@ -11,4 +11,6 @@ public interface GithubService {
 
 	GithubRepository createGithubRepository(Github github);
 
+	boolean deleteRepository(String repoName);
+
 }
