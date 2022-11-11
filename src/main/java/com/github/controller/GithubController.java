@@ -3,10 +3,13 @@ package com.github.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.constants.APIConstants;
+import com.github.models.Github;
 import com.github.models.GithubRepository;
 import com.github.service.GithubService;
 
@@ -27,6 +30,12 @@ public class GithubController {
 	public List<GithubRepository> getGithubRepository() {
 		log.info("Fetching all the repository present in github");
 		return this.githubService.getGithubRepository();
+	}
+	
+	
+	@PostMapping(APIConstants.CREATE_REPOSITORY)
+	public GithubRepository createRepository(@RequestBody() Github github) {
+		return this.githubService.createGithubRepository(github);
 	}
 		
 	
