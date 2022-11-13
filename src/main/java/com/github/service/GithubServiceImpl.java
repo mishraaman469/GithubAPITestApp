@@ -34,7 +34,7 @@ public class GithubServiceImpl implements GithubService {
 	@Override
 	public List<GithubRepository> getGithubRepository() {
 		HttpHeaders headers = getHeaders();
-		ResponseEntity<List<GithubRepository>> repos = this.restAPIService.callRestApi(APIConstants.GITHUB_REPOSITORY,
+		ResponseEntity<List<GithubRepository>> repos = this.restAPIService.callRestApi(null,
 				"fetch-all-repository", HttpMethod.GET, null, new ParameterizedTypeReference<List<GithubRepository>>() {
 				}, headers);
 		return repos.getBody();
@@ -43,7 +43,7 @@ public class GithubServiceImpl implements GithubService {
 	@Override
 	public GithubRepository createGithubRepository(Github github) {
 		HttpHeaders headers = getHeaders();
-		ResponseEntity<GithubRepository> repos = this.restAPIService.callRestApi(APIConstants.GITHUB_CREATE_REPOSITORY,
+		ResponseEntity<GithubRepository> repos = this.restAPIService.callRestApi(null,
 				"create-repository", HttpMethod.POST, github, new ParameterizedTypeReference<GithubRepository>() {
 				}, headers);
 		return repos.getBody();
@@ -51,8 +51,8 @@ public class GithubServiceImpl implements GithubService {
 
 	@Override
 	public boolean deleteRepository(String repoName) {
-		ResponseEntity<String> repos = this.restAPIService.callRestApi(APIConstants.GITHUB_DELETE_REPOSITORY,
-				"delete-repos", HttpMethod.DELETE, null, new ParameterizedTypeReference<String>() {
+		ResponseEntity<String> repos = this.restAPIService.callRestApi(null,
+				"delete-repository", HttpMethod.DELETE, null, new ParameterizedTypeReference<String>() {
 				}, getHeaders(), repoName);
 		return repos.getStatusCode() == HttpStatus.NO_CONTENT;
 
